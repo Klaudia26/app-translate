@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import UserCreate from '../components/UserCreate';
+import LanguageContext from '../context/LanguageContext';
 
 class App extends Component {
   state = {
-    language: 'English',
+    language: 'english',
   };
 
   onLanguageChange = (language) => {
@@ -18,14 +19,16 @@ class App extends Component {
           Select a language:
           <i
             className="flag us"
-            onClick={() => this.onLanguageChange('English')}
+            onClick={() => this.onLanguageChange('english')}
           />
           <i
             className="flag pl"
-            onClick={() => this.onLanguageChange('Polish')}
+            onClick={() => this.onLanguageChange('polish')}
           />
         </div>
-        <UserCreate />
+        <LanguageContext.Provider value={this.state.language}>
+          <UserCreate />
+        </LanguageContext.Provider>
       </div>
     );
   }
